@@ -7,8 +7,12 @@
 -- from review
 -- where id = 5;
 
-select product_name, product_type, review_detail 
-from PRODUCT, PRODUCT_REVIEW, REVIEW
-where PRODUCT.id = 1
-and PRODUCT.id = PRODUCT_REVIEW.product_id
-and PRODUCT_REVIEW.product_id = REVIEW.product_id;
+-- select product_name, product_type, review_detail 
+-- from PRODUCT, PRODUCT_REVIEW, REVIEW
+-- where PRODUCT.id = 1
+-- and PRODUCT.id = PRODUCT_REVIEW.product_id
+-- and PRODUCT_REVIEW.product_id = REVIEW.product_id;
+
+select rate
+from REVIEW
+where id = 9;

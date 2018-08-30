@@ -27,12 +27,13 @@
     <div>
     @foreach($products as $product)
         <ul class="list-unstyled">
-            <li>{{ $product -> product_name }}</li>
-            <li>{{ $product -> product_type }}</li>
-            <li>{{ $product -> review_detail }}</li>
+            <li><a href="{{url("productDetail/$product->id")}}">{{$product->product_name}}</a></li>
+            <!--<li>{{ $product -> product_type }}</li>-->
+            <!--<li>{{ $product -> review_detail }}</li>-->
         </ul>
-    </div>
     @endforeach
+    </div>
+    
     
     
 @endsection

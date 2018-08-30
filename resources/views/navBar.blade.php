@@ -1,6 +1,5 @@
-
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Product Navigation</a>
+      <a class="navbar-brand" href="/">Product Navigation</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,5 +31,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   </body>
 </html>
-
-

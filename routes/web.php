@@ -21,4 +21,7 @@
 // });
 
 Route::get('/', 'PageController@getProduct');
+Route::get('/productDetail/{id}', 'PageController@productDetail');
+Route::post('/addProduct/{id}','PageController@addProduct');
+
 
