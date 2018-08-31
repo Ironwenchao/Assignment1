@@ -19,6 +19,7 @@ class PageController extends Controller
 //     }
     
     public function getProduct() {
+    
         
         $sql = "select product_name, product_type, review_detail, product.id
                 from PRODUCT
@@ -26,7 +27,7 @@ class PageController extends Controller
                 LEFT JOIN PRODUCT_REVIEW ON PRODUCT_REVIEW.product_id = PRODUCT.id
                 GROUP BY PRODUCT.id";
         
-        //$sql = "select * from product";
+        
         $products = DB::select($sql);
         
         // $sql = "select review_detail from review";
@@ -39,27 +40,27 @@ class PageController extends Controller
     // (because the PRODUCT.id is the primary key for the PRODUCT table, meanwhile, it is 
     // the foreign key in the table PRODUCT_REVIEW and REVIEW.)
     public function productDetail($id) {
+        
+        $sql = "select id from product where id = ?";
+        $ids = DB::select($sql, array($id));
+        
+        
         $sql =  "select product_name, product_type from product where id = ?";
         $products = DB::select($sql, array($id));
         
-        $sql = "select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail 
+        $sql = "select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail, PRODUCT.id
                 from PRODUCT, REVIEW, PRODUCT_REVIEW
                 where PRODUCT.id = ?
                 and REVIEW.product_id = PRODUCT.id
                 and PRODUCT_REVIEW.product_id = PRODUCT.id
                 and REVIEW.product_id = PRODUCT_REVIEW.product_id";
         $productdetails = DB::select($sql, array($id));
+        
+        //dd($productdetailID);
         //dd($productdetails);
         //$productdetails = $productdetail[0];
-
-        // $sql = "select review_detail 
-        //         from PRODUCT, PRODUCT_REVIEW, REVIEW
-        //         where PRODUCT.id = ?
-        //         and PRODUCT.id = PRODUCT_REVIEW.product_id
-        //         and PRODUCT_REVIEW.product_id = REVIEW.product_id";
-        // $productReviews = DB::select($sql, array($id));
-        
-        return view('productDetail', ['productdetails' => $productdetails, 'products' => $products]);
+        $id = $ids[0];
+        return view('productDetail', ['id' => $id,'productdetails' => $productdetails, 'products' => $products]);
         //dd($id);
     }
     
@@ -115,9 +116,14 @@ class PageController extends Controller
         
         
     public function deleteProduct($id) {
-        $sql = "delete from PRODUCT where id = ?";
-        DB::delete($sql,array($id));
-        return view();
+        $sqlDeletePRODUCT = "delete from PRODUCT where id = ?";
+        $sqlDeletePRODUCT_REVIEW = "delete from PRODUCT_REVIEW where product_id = ?";
+        $sqlDeleteREVIEW = "delete from REVIEW where product_id = ?";
+        DB::delete($sqlDeletePRODUCT, array($id));
+        DB::delete($sqlDeletePRODUCT_REVIEW, array($id));
+        DB::delete($sqlDeleteREVIEW, array($id));
+        return view('deleteProduct');
+        // return redirect('/');
     }    
         
     //         public function deleteProduct($id) {

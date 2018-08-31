@@ -21,7 +21,8 @@
     @else
         No reviews here
     
-    @endif
-    
+    @endif<br>
+<a href="{{url("/UpdateProduct/$id->id")}}">Update a Product</a>
+<a href="{{url("/deleteProduct/$id->id")}}">Delete a Product</a>
 
 @endsection('content')

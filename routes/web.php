@@ -23,6 +23,6 @@
 Route::get('/', 'PageController@getProduct');
 Route::get('/productDetail/{id}', 'PageController@productDetail');
 Route::get('addProduct','PageController@addProduct');
-
 Route::post('/addProductAction', 'PageController@addProductAction');
+Route::get('/deleteProduct/{id}','PageController@deleteProduct');
 // Route::get('add-product', function() { return view('includes.products.addProduct'); });
