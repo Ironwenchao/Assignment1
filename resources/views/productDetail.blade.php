@@ -4,13 +4,24 @@
     All Product
     
 @section('content')
-
-<h2>{{ $productdetails -> product_name }}</h2>
-    {{ $productdetails -> product_type }}
+ {{csrf_field()}}
+<h2>
+    @foreach ($products as $product)
+    {{ $product -> product_name }}</h2>
+    
+    {{ $product -> product_type }}
+    @endforeach
+   
     
 <h2>Review</h2>
-
-    {{ $productdetails ->review_detail}}
+    @if ($productdetails)
+        @foreach ($productdetails as $productdetail)
+            {{ $productdetail ->review_detail}}
+        @endforeach
+    @else
+        No reviews here
+    
+    @endif
     
 
 @endsection('content')

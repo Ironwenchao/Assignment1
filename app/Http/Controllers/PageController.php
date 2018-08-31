@@ -21,12 +21,12 @@ class PageController extends Controller
     public function getProduct() {
         
         $sql = "select product_name, product_type, review_detail, product.id
-                from PRODUCT, PRODUCT_REVIEW, REVIEW
-                WHERE PRODUCT.id = PRODUCT_REVIEW.product_id
-                and PRODUCT_REVIEW.product_id = REVIEW.product_id";
+                from PRODUCT
+                LEFT JOIN REVIEW ON PRODUCT.id = REVIEW.product_id
+                LEFT JOIN PRODUCT_REVIEW ON PRODUCT_REVIEW.product_id = PRODUCT.id
+                GROUP BY PRODUCT.id";
         
-        // $sql = "select * from product";
-        
+        //$sql = "select * from product";
         $products = DB::select($sql);
         
         // $sql = "select review_detail from review";
@@ -39,17 +39,19 @@ class PageController extends Controller
     // (because the PRODUCT.id is the primary key for the PRODUCT table, meanwhile, it is 
     // the foreign key in the table PRODUCT_REVIEW and REVIEW.)
     public function productDetail($id) {
-        $sql = "select product_name, product_type, review_detail 
-                from PRODUCT, PRODUCT_REVIEW, REVIEW
+        $sql =  "select product_name, product_type from product where id = ?";
+        $products = DB::select($sql, array($id));
+        
+        $sql = "select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail 
+                from PRODUCT, REVIEW, PRODUCT_REVIEW
                 where PRODUCT.id = ?
-                and PRODUCT.id = PRODUCT_REVIEW.product_id
-                and PRODUCT_REVIEW.product_id = REVIEW.product_id";
-        $productdetail = DB::select($sql, array($id));
+                and REVIEW.product_id = PRODUCT.id
+                and PRODUCT_REVIEW.product_id = PRODUCT.id
+                and REVIEW.product_id = PRODUCT_REVIEW.product_id";
+        $productdetails = DB::select($sql, array($id));
         //dd($productdetails);
-        $productdetails = $productdetail[0];
-        
-        
-        
+        //$productdetails = $productdetail[0];
+
         // $sql = "select review_detail 
         //         from PRODUCT, PRODUCT_REVIEW, REVIEW
         //         where PRODUCT.id = ?
@@ -57,18 +59,40 @@ class PageController extends Controller
         //         and PRODUCT_REVIEW.product_id = REVIEW.product_id";
         // $productReviews = DB::select($sql, array($id));
         
-        return view('productDetail', ['productdetails' => $productdetails]);
+        return view('productDetail', ['productdetails' => $productdetails, 'products' => $products]);
         //dd($id);
     }
     
-    public function addProduct(Request $request) {
-        $product_name = request("product_name");
-        $product_type = request("product_type");
-        $sql = "insert into PRODUCT (product_name, product_type) values (?, ?)";
-        DB::insert($sql, array($product_name, $product_type));
-        $id = DB::getpdo()->lastInsertId();
-        return redirect("addProduct/$id");
+    public function addProduct() {
+        // $product_name = request("product_name");
+        // $product_type = request("product_type");
+        // $sql = "insert into PRODUCT (product_name, product_type) values (?, ?)";
+        // DB::insert($sql, array($product_name, $product_type));
+        // $id = DB::getpdo()->lastInsertId();
+        $sql = "select * from MANUFACTURER";
+        $manufacturers = DB::select($sql);
+
+        return view("addProduct", ['manufacturers' => $manufacturers]);
         //dd($id);
+    }
+    
+    public function addProductAction(Request $request) {
+        $product_name = request("product_name");
+        // dd($product_name);
+        $product_type = request("product_type");
+        //dd($product_type);
+        $manufacturers_id = request("id");
+        //dd($product_name);
+        
+        
+        
+        $sql = "insert into PRODUCT (product_name, product_type, manufacturer_id) values (?, ?, ?)";
+        
+        $a = DB::insert($sql, array($product_name, $product_type, $manufacturers_id));
+        
+        $id = DB::getpdo()->lastInsertId();
+        
+        return redirect("productDetail/$id");
     }
     
         // public function addProductAction(Request $request) {

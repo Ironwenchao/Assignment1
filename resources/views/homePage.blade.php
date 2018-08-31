@@ -7,6 +7,7 @@
 <!--all products list here-->
 @section('content')
     <!--Site location navigation-->
+    {{csrf_field()}}
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb site-location">
         <!--<li class="breadcrumb-item active" aria-current="page">All products</li>-->
@@ -28,12 +29,11 @@
     @foreach($products as $product)
         <ul class="list-unstyled">
             <li><a href="{{url("productDetail/$product->id")}}">{{$product->product_name}}</a></li>
-            <!--<li>{{ $product -> product_type }}</li>-->
-            <!--<li>{{ $product -> review_detail }}</li>-->
+
         </ul>
     @endforeach
     </div>
     
-    
+    <a href="/addProduct">add a product</a>
     
 @endsection

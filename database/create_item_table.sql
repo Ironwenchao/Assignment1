@@ -19,11 +19,11 @@ manufacturer_country	                VARCHAR(10)
 );
 
 CREATE TABLE PRODUCT (
-    id	                        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    product_name			    VARCHAR(20)	NOT NULL,
-    product_type                VARCHAR(20) NOT NULL,
-    manufacturer_id             INTEGER NOT NULL,
-    FOREIGN KEY (manufacturer_id )  REFERENCES MANUFACTURER(id)
+id	                        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+product_name			    VARCHAR(20)	NOT NULL,
+product_type                VARCHAR(20) NOT NULL,
+manufacturer_id             INTEGER NOT NULL,
+FOREIGN KEY (manufacturer_id )  REFERENCES MANUFACTURER(id)
 );
 
 CREATE TABLE PRODUCT_REVIEW (
