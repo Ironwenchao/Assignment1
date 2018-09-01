@@ -93,7 +93,7 @@ class PageController extends Controller
         
         $id = DB::getpdo()->lastInsertId();
         
-        return redirect("productDetail/$id");
+        return redirect('/');
     }
     
         // public function addProductAction(Request $request) {
@@ -122,7 +122,7 @@ class PageController extends Controller
         DB::delete($sqlDeletePRODUCT, array($id));
         DB::delete($sqlDeletePRODUCT_REVIEW, array($id));
         DB::delete($sqlDeleteREVIEW, array($id));
-        return view('deleteProduct');
+        return redirect('/');
         // return redirect('/');
     }    
         
@@ -138,4 +138,55 @@ class PageController extends Controller
     //     //echo "Record deleted successfully.<br/>";
     //     return view('includes.products.deleteComfirmation');
     // }
+    
+    public function editProduct($id) {
+        $sql = 'select * from product where id = ?';
+        $products = DB::select($sql, array($id));
+        return view('updateProduct', compact('products'));
+    }
+    
+    public function updateProduct(Request $request, $id) {
+        $product_name = $request ->input("product_name");
+        // dd($product_name);
+        $product_type = $request ->input("product_type");
+        $sql = "update product set product_name = ?, product_type = ? where id = ?";
+        DB::update($sql, array($product_name, $product_type, $id));
+        return redirect('/');
+        // return view('updateProduct');
+    }
+    public function getManufacturer(){
+        $sql = "select manufacturer_name, manufacturer_country, id
+                from MANUFACTURER";
+        $manufacturers = DB::select($sql);
+        //dd($manufacturers);
+        
+        return view('manufacturer', ['manufacturers' => $manufacturers]);
+    }
+    
+    public function getProductFromManufacturer($id){
+        $sql = "select distinct(product_name)
+                from MANUFACTURER, PRODUCT
+                where manufacturer.id = ?
+                and PRODUCT.manufacturer_id = MANUFACTURER.id";
+        $productFromManufacturers = DB::select($sql, array($id));
+        
+        return view('ProductFromManufacturer',['productFromManufacturers' => $productFromManufacturers]);
+    }
+    
+    
+    public function editReview($id){
+        $sql = 'select * from REVIEW where product_id = ?';
+        $reviews = DB::select($sql, array($id));
+        
+        //dd($reviews);
+        return view('updateReview', ['reviews' => $reviews]);
+    }
+    
+    public function updateReview(Request $request, $id){
+        $review_detail = $request -> input("review_detail");
+        $sql = "update REVIEW set review_detail = ?
+                where id = ?";
+        DB::update($sql, array($review_detail, $id));
+        return redirect('/');
+    }
 }

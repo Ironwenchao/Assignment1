@@ -34,6 +34,6 @@
     @endforeach
     </div>
     
-    <a href="/addProduct">add a product</a>
+
     
 @endsection

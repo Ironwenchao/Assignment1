@@ -25,4 +25,11 @@ Route::get('/productDetail/{id}', 'PageController@productDetail');
 Route::get('addProduct','PageController@addProduct');
 Route::post('/addProductAction', 'PageController@addProductAction');
 Route::get('/deleteProduct/{id}','PageController@deleteProduct');
+Route::post('/updateProduct/{id}', 'PageController@updateProduct');
+Route::get('/editProduct/{id}', 'PageController@editProduct');
+Route::get('/manufacturer', 'PageController@getManufacturer');
+Route::get('/getProductFromManufacturer/{id}', 'PageController@getProductFromManufacturer');
+Route::post('/updateReview/{id}', 'PageController@updateReview');
+Route::get('/editReview/{id}', 'PageController@editReview');
+
 // Route::get('add-product', function() { return view('includes.products.addProduct'); });

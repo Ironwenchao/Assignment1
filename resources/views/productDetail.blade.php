@@ -22,7 +22,7 @@
         No reviews here
     
     @endif<br>
-<a href="{{url("/UpdateProduct/$id->id")}}">Update a Product</a>
-<a href="{{url("/deleteProduct/$id->id")}}">Delete a Product</a>
-
+<a href="{{url("/editProduct/$id->id")}}">Update a Product</a><br>
+<a href="{{url("/deleteProduct/$id->id")}}">Delete a Product</a><br>
+<a href="{{url("/editReview/$id->id")}}">Update a Product Review</a><br>
 @endsection('content')

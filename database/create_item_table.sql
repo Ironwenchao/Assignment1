@@ -22,7 +22,7 @@ CREATE TABLE PRODUCT (
 id	                        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 product_name			    VARCHAR(20)	NOT NULL,
 product_type                VARCHAR(20) NOT NULL,
-manufacturer_id             INTEGER NOT NULL,
+manufacturer_id             INT(3),
 FOREIGN KEY (manufacturer_id )  REFERENCES MANUFACTURER(id)
 );
 
@@ -65,12 +65,12 @@ INSERT INTO USER VALUES (null,	'Mary',		'Female',	14);
 INSERT INTO USER VALUES (null,	'Nancy',	'Female',	16);
 
 
-INSERT INTO MANUFACTURER VALUES (null,	'Apple',	'US');
-INSERT INTO MANUFACTURER VALUES (null,	'Samsung',	'KR');
-INSERT INTO MANUFACTURER VALUES (null,	'Huawei',	'CN');
-INSERT INTO MANUFACTURER VALUES (null,	'Oppo',	    'CN');
-INSERT INTO MANUFACTURER VALUES (null,	'Canon',	'JP');
-INSERT INTO MANUFACTURER VALUES (null,	'Sony',	    'JP');
+INSERT INTO MANUFACTURER VALUES (null,	'Apple',	'America');
+INSERT INTO MANUFACTURER VALUES (null,	'Samsung',	'Korea');
+INSERT INTO MANUFACTURER VALUES (null,	'Huawei',	'China');
+INSERT INTO MANUFACTURER VALUES (null,	'Oppo',	    'China');
+INSERT INTO MANUFACTURER VALUES (null,	'Canon',	'Japan');
+INSERT INTO MANUFACTURER VALUES (null,	'Sony',	    'Japan');
 
 
 INSERT INTO PRODUCT VALUES (null,	'Apple iPhone X',		'mobile phone',    1);
