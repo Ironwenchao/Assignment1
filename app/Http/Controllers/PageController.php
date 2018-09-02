@@ -21,14 +21,24 @@ class PageController extends Controller
     public function getProduct() {
     
         
-        $sql = "select product_name, product_type, review_detail, product.id
+        $sql = "select product_name, product_type, review_detail, product.id, COUNT(REVIEW.id) as totalReview
                 from PRODUCT
                 LEFT JOIN REVIEW ON PRODUCT.id = REVIEW.product_id
                 LEFT JOIN PRODUCT_REVIEW ON PRODUCT_REVIEW.product_id = PRODUCT.id
-                GROUP BY PRODUCT.id";
+                group by PRODUCT.id
+                order by totalReview DESC";
         
         
         $products = DB::select($sql);
+        // dd($products);
+        
+        //  $sql = "select PRODUCT.product_name, COUNT(REVIEW.id) as totalReview 
+        //         from PRODUCT  
+        //         left join REVIEW on REVIEW.product_id = PRODUCT.id
+        //         group by PRODUCT.id
+        //         order by totalReview DESC";
+        // $reviewOrders = DB::select($sql);
+        // dd($reviewOrders);
         
         // $sql = "select review_detail from review";
         // $reviews = DB::select($sql);
@@ -202,5 +212,31 @@ class PageController extends Controller
         $sql = "select * from REVIEW";
         $reviews =DB::select($sql);
         return view('addReview', ['reviews'=> $reviews]);
+    }
+    
+       
+    
+    public function rateDescending() {
+        $sql = "select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail, PRODUCT.id,
+                AVG(REVIEW.rate) as rate, COUNT(REVIEW.id) as totalReview
+                from PRODUCT
+                left join REVIEW on REVIEW.product_id = PRODUCT.id
+                group by PRODUCT.id
+                order by rate DESC";
+        $descendingRates = DB::select($sql);
+        // dd($descendingRates);
+        return view('rateDescending', ['descendingRates' => $descendingRates]);
+    }
+    
+    public function numberOfReview() {
+        $sql = "select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail, PRODUCT.id,
+                AVG(REVIEW.rate) as rate, COUNT(REVIEW.id) as totalReview
+                from PRODUCT
+                left join REVIEW on REVIEW.product_id = PRODUCT.id
+                group by PRODUCT.id
+                order by totalReview DESC";
+        $numberOfReviews = DB::select($sql);
+        // dd($numberOfReviews);
+        return view ('numberOfReview', ['numberOfReviews' => $numberOfReviews]);
     }
 }

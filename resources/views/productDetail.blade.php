@@ -27,8 +27,11 @@
     @endif<br>
     
     
+    
+    
 <a href="{{url("/editProduct/$id->id")}}">Update a Product</a><br>
 <a href="{{url("/deleteProduct/$id->id")}}">Delete a Product</a><br>
 <a href="{{url("/editReview/$id->id")}}">Update a Product Review</a><br>
 <a href="{{url("/addReview")}}">Write the Product Review</a><br>
 @endsection('content')
+

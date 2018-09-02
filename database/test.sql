@@ -38,6 +38,19 @@
 
 -- select * from REVIEW where product_id = 1;
 
-select * from REVIEW, PRODUCT 
-where REVIEW.product_id = 1
-and REVIEW.product_id = PRODUCT.id;
+-- select * from REVIEW, PRODUCT 
+-- where REVIEW.product_id = 1
+-- and REVIEW.product_id = PRODUCT.id;
+
+-- select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail, PRODUCT.id,
+-- AVG(REVIEW.rate) as rate, COUNT(REVIEW.id) as totalReview
+-- from PRODUCT
+-- left join REVIEW on REVIEW.product_id = PRODUCT.id
+-- group by PRODUCT.id
+-- order by rate DESC;
+
+select PRODUCT.product_name, COUNT(REVIEW.id) as totalReview 
+from PRODUCT  
+left join REVIEW on REVIEW.product_id = PRODUCT.id
+group by PRODUCT.id
+order by totalReview DESC;

@@ -33,4 +33,6 @@ Route::post('/updateReview/{id}', 'PageController@updateReview');
 Route::get('/editReview/{id}', 'PageController@editReview');
 Route::post('/addReviewAction', 'PageController@addReviewAction');
 Route::get('/addReview', 'PageController@addReview');
+Route::get('/rateDescending', 'PageController@rateDescending');
+Route::get('/numberOfReview', 'PageController@numberOfReview');
 // Route::get('add-product', function() { return view('includes.products.addProduct'); });
