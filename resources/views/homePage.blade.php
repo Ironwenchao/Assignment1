@@ -29,6 +29,7 @@
     @foreach($products as $product)
         <ul class="list-unstyled">
             <li><a href="{{url("productDetail/$product->id")}}">{{$product->product_name}}</a></li>
+            
 
         </ul>
     @endforeach

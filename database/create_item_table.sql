@@ -76,7 +76,7 @@ INSERT INTO MANUFACTURER VALUES (null,	'Sony',	    'Japan');
 INSERT INTO PRODUCT VALUES (null,	'Apple iPhone X',		'mobile phone',    1);
 INSERT INTO PRODUCT VALUES (null,	'Samsung Galacy 9',		'mobile phone',    2);
 INSERT INTO PRODUCT VALUES (null,	'Oppo X21',		        'mobile phone',    4);
-INSERT INTO PRODUCT VALUES (null,	'Apple iPhone X',		'mobile phone',    1);
+INSERT INTO PRODUCT VALUES (null,	'Apple iPhone 5',		'mobile phone',    1);
 INSERT INTO PRODUCT VALUES (null,	'Huawei mate 10',		'mobile phone',    3);
 INSERT INTO PRODUCT VALUES (null,	'Apple  Macbook',	         ' labtop',    1);
 INSERT INTO PRODUCT VALUES (null,	'Canon EOS 750D',		      'camera',    5);
@@ -94,13 +94,13 @@ INSERT INTO PRODUCT_REVIEW VALUES (9,		3);
 INSERT INTO PRODUCT_REVIEW VALUES (10, 	    6);
 
 
-INSERT INTO REVIEW VALUES (null,  5,  6,    "I bought this phone about a month ago and it is amazing.", "23-8-2017",    5);
-INSERT INTO REVIEW VALUES (null,  6,  2,    "it very fast and this is the best labtop that I never have.",  "23-9-2018",    5);
+INSERT INTO REVIEW VALUES (null,  5,  6,    "I bought this phone about a month ago and it is amazing.", "23-8-2017",    3);
+INSERT INTO REVIEW VALUES (null,  6,  2,    "it very fast and this is the best labtop that I never have.",  "23-9-2018",    2);
 INSERT INTO REVIEW VALUES (null,  4,  7,    "I bought this phone today and have to say that it has exceeded my expectations.",  "10-8-2017",    4);
 INSERT INTO REVIEW VALUES (null,  8,  9,    "I wasn't expecting much for the price point but this a fantastic camera and is value for money.",  "23-3-2018",    4);
-INSERT INTO REVIEW VALUES (null,  3,  11,   "It works perfect, very fast and comfortable, very easy to use.",   "25-10-2017",    5);
-INSERT INTO REVIEW VALUES (null,  2,  4,    "I bought the phone yesterday and have loved it since, the screen is great and the ui is fantastic.",   "23-5-2018",    5);
-INSERT INTO REVIEW VALUES (null,  1,  3,    "Bought this a couple of weeks ago and have been enjoying it.", "2-5-2017",    5);
+INSERT INTO REVIEW VALUES (null,  3,  11,   "It works perfect, very fast and comfortable, very easy to use.",   "25-10-2017",    2);
+INSERT INTO REVIEW VALUES (null,  2,  4,    "I bought the phone yesterday and have loved it since, the screen is great and the ui is fantastic.",   "23-5-2018",    3);
+INSERT INTO REVIEW VALUES (null,  1,  3,    "Bought this a couple of weeks ago and have been enjoying it.", "2-5-2017",    4);
 INSERT INTO REVIEW VALUES (null,  5,  15,   "Purchased last month. The build quality is top notch. Display is bright & clear.", "23-9-2018",    5);
 INSERT INTO REVIEW VALUES (null,  7,  10,   "best quality photo, and really good for company or advertising companies.",    "13-3-2017",    4);
 INSERT INTO REVIEW VALUES (null,  6,  1,    "it is really good for work.",  "13-4-2018",    5);

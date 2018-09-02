@@ -17,7 +17,7 @@
         <label>Please choose a manufacturer</label>
         <select name = "id">
             @foreach($manufacturers as $manufacturer)        
-            <option value= "{{ $manufacturer -> id }}">{{ $manufacturer -> manufacturer_name }}</option>
+              <option value= "{{ $manufacturer -> id }}">{{ $manufacturer -> manufacturer_name }}</option>
             @endforeach
         </select>
     </div>

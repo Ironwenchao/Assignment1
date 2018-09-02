@@ -34,4 +34,10 @@
 -- where manufacturer.id = 1
 -- and PRODUCT.manufacturer_id = MANUFACTURER.id;
 
-select * from REVIEW where id = 1;
+-- select * from REVIEW where id = 1;
+
+-- select * from REVIEW where product_id = 1;
+
+select * from REVIEW, PRODUCT 
+where REVIEW.product_id = 1
+and REVIEW.product_id = PRODUCT.id;

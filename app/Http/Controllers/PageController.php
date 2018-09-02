@@ -47,17 +47,20 @@ class PageController extends Controller
         
         $sql =  "select product_name, product_type from product where id = ?";
         $products = DB::select($sql, array($id));
+        // dd($products);
+        // $products = $product[0];
         
-        $sql = "select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail, PRODUCT.id
-                from PRODUCT, REVIEW, PRODUCT_REVIEW
+        $sql = "select PRODUCT.product_name, PRODUCT.product_type, REVIEW.review_detail, PRODUCT.id, USER.name, REVIEW.rate
+                from PRODUCT, REVIEW, PRODUCT_REVIEW, USER
                 where PRODUCT.id = ?
                 and REVIEW.product_id = PRODUCT.id
                 and PRODUCT_REVIEW.product_id = PRODUCT.id
-                and REVIEW.product_id = PRODUCT_REVIEW.product_id";
+                and REVIEW.product_id = PRODUCT_REVIEW.product_id
+                and REVIEW.user_id = USER.id";
         $productdetails = DB::select($sql, array($id));
         
         //dd($productdetailID);
-        //dd($productdetails);
+        // dd($productdetails);
         //$productdetails = $productdetail[0];
         $id = $ids[0];
         return view('productDetail', ['id' => $id,'productdetails' => $productdetails, 'products' => $products]);
@@ -84,15 +87,10 @@ class PageController extends Controller
         //dd($product_type);
         $manufacturers_id = request("id");
         //dd($product_name);
-        
-        
-        
+
         $sql = "insert into PRODUCT (product_name, product_type, manufacturer_id) values (?, ?, ?)";
-        
         $a = DB::insert($sql, array($product_name, $product_type, $manufacturers_id));
-        
         $id = DB::getpdo()->lastInsertId();
-        
         return redirect('/');
     }
     
@@ -188,5 +186,21 @@ class PageController extends Controller
                 where id = ?";
         DB::update($sql, array($review_detail, $id));
         return redirect('/');
+    }
+    
+    public function addReviewAction(Request $request){
+        $review_detail = request("review_detail");
+        $product_id = request("product_id");
+        $sql = "insert into REVIEW (review_detail, product_id) values (?, ?)";
+        $a = DB::insert($sql, array($review_detail, $product_id));
+        $id = DB::getpdo()->LastInsertId();
+        // return view('productDetail');
+        return redirect('/');
+    }
+    
+    public function addReview(){
+        $sql = "select * from REVIEW";
+        $reviews =DB::select($sql);
+        return view('addReview', ['reviews'=> $reviews]);
     }
 }

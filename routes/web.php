@@ -31,5 +31,6 @@ Route::get('/manufacturer', 'PageController@getManufacturer');
 Route::get('/getProductFromManufacturer/{id}', 'PageController@getProductFromManufacturer');
 Route::post('/updateReview/{id}', 'PageController@updateReview');
 Route::get('/editReview/{id}', 'PageController@editReview');
-
+Route::post('/addReviewAction', 'PageController@addReviewAction');
+Route::get('/addReview', 'PageController@addReview');
 // Route::get('add-product', function() { return view('includes.products.addProduct'); });
